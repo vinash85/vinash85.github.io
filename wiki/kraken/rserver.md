@@ -7,9 +7,12 @@ mkdir singularity-images;
 cd singularity-images
 module load singularity
 # singularity pull --name rstudio.simg docker://rocker/tidyverse:latest
-singularity pull --name rstudio.simg docker://rocker/tidyverse:3.6.3
+# singularity pull --name rstudio4.simg docker://rocker/tidyverse:4.0.0
+singularity pull --name rstudio3.6.2.simg docker://rocker/tidyverse:3.6.2
 # singularity exec rstudio.simg rserver --www-address=127.0.0.1
-PASSWORD='asdf' singularity exec --bind=/liulab/asahu  rstudio.simg rserver --auth-none=0  --auth-pam-helper-path=pam-helper  --www-address=127.0.0.1
+PASSWORD='asdf' singularity exec --bind=/liulab/asahu rstudio3.6.2.simg rserver --auth-none=0  --auth-pam-helper-path=pam-helper  --www-address=127.0.0.1 &
+
+PASSWORD='asdf' singularity exec --bind /liulab/asahu,/cm,/homes6 rstudio3.6.2.simg rserver --auth-none=0  --auth-pam-helper-path=pam-helper  --www-address=127.0.0.1 &
 ```
 
 ## SSH tuneling
